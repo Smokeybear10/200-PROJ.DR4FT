@@ -22,7 +22,7 @@ export default function PillButton({
       disabled={disabled}
       className={`
         ${variant === 'filled' ? 'pill-btn-filled' : 'pill-btn'}
-        px-8 py-2.5 text-sm font-medium tracking-wider
+        px-8 py-3 text-sm font-medium tracking-wider
         ${fullWidth ? 'w-full' : ''}
       `}
     >

@@ -45,10 +45,10 @@ export default function Home() {
         </div>
 
         <div className="flex items-center justify-center gap-4 mt-6 stagger-4">
-          <Link href="/analyzer" className="pill-btn-filled px-8 py-2.5 text-xs font-medium tracking-wider inline-block">
+          <Link href="/analyzer" className="pill-btn-filled px-8 py-3 text-xs font-medium tracking-wider inline-block">
             Get Started
           </Link>
-          <Link href="/about" className="pill-btn px-8 py-2.5 text-xs text-text-secondary font-medium tracking-wider inline-block">
+          <Link href="/about" className="pill-btn px-8 py-3 text-xs text-text-secondary font-medium tracking-wider inline-block">
             Learn More
           </Link>
         </div>
