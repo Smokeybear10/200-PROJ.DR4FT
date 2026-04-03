@@ -25,7 +25,7 @@ export default function Nav() {
         WebkitBackdropFilter: 'blur(24px) saturate(1.2)',
       }}
     >
-      <div className="px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div className="px-4 sm:px-6 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
           <Logo size={20} />
           <div className="flex flex-col leading-none">

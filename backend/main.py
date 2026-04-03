@@ -32,3 +32,8 @@ app.include_router(auth.router)
 @app.get("/")
 async def root():
     return {"message": "DR4FT API is running"}
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="127.0.0.1", port=3200, reload=True)
