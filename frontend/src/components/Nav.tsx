@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -14,9 +14,36 @@ const NAV_ITEMS = [
 export default function Nav() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const [visible, setVisible] = useState(false)
+
+  const isHome = pathname === '/'
+
+  useEffect(() => {
+    if (!isHome) {
+      setVisible(true)
+      return
+    }
+
+    const onScroll = () => {
+      setVisible(window.scrollY > window.innerHeight * 0.85)
+    }
+
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [isHome])
 
   return (
-    <nav className="exam-nav" aria-label="Main navigation">
+    <nav
+      className="exam-nav"
+      aria-label="Main navigation"
+      style={{
+        opacity: visible ? 1 : 0,
+        pointerEvents: visible ? 'auto' : 'none',
+        transform: visible ? 'translateY(0)' : 'translateY(-100%)',
+        transition: 'opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
+      }}
+    >
       <Link href="/" className="exam-nav-brand">DR4FT</Link>
 
       <ul className="exam-nav-links hidden md:flex">

@@ -67,7 +67,7 @@ input:focus, textarea:focus, select:focus { outline: none; }
 .exam-nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 100;
+  z-index: 9999;
   height: var(--nav-height);
   display: flex;
   align-items: center;
@@ -134,9 +134,59 @@ input:focus, textarea:focus, select:focus { outline: none; }
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: calc(var(--nav-height) + 40px) 40px 80px;
+  padding: 80px 40px;
   position: relative;
   background: linear-gradient(170deg, var(--color-cover-deep) 0%, var(--color-cover) 40%, var(--color-cover-light) 100%);
+}
+
+/* Cover texture — cardboard feel */
+.cover-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 256px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.8;
+  mix-blend-mode: overlay;
+}
+
+/* Cover border — like the actual blue book white border */
+.cover-page::before {
+  content: '';
+  position: absolute;
+  inset: 60px 40px 40px;
+  border: 1px solid rgba(255,255,255,0.08);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Cover writing lines for Name/Date */
+.cover-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.cover-line-field {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cover-line-blank {
+  flex: 1;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  min-height: 1px;
 }
 
 .cover-tag {
@@ -255,10 +305,261 @@ input:focus, textarea:focus, select:focus { outline: none; }
   z-index: 1;
 }
 
+/* Ruled lines across the paper — like a real blue book */
+.paper-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      rgba(100, 140, 200, 0.1) 31px,
+      rgba(100, 140, 200, 0.1) 32px
+    );
+  background-position: 0 20px;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .paper-inner {
   padding: 56px 72px 56px 88px;
   position: relative;
   z-index: 2;
+}
+
+/* Red margin line on paper */
+.paper-margin-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 76px;
+  width: 1px;
+  background: rgba(200, 80, 80, 0.15);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Page number at bottom */
+.page-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-pencil-dim);
+  text-align: center;
+  padding: 24px 0 8px;
+  letter-spacing: 0.1em;
+}
+
+/* Margin annotation — teacher's red pen (inline, not absolute) */
+.margin-note {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--color-red-grade);
+  line-height: 1.4;
+  opacity: 0.65;
+  margin-top: 12px;
+  padding-left: 16px;
+  border-left: 2px solid rgba(185, 28, 28, 0.2);
+}
+
+.margin-note.blue {
+  color: var(--color-blue-pen);
+  border-left-color: rgba(26, 60, 143, 0.2);
+}
+
+/* Staple mark */
+.staple {
+  position: absolute;
+  top: 32px;
+  left: 20px;
+  width: 14px;
+  height: 4px;
+  background: #b8b8b8;
+  border-radius: 1px;
+  transform: rotate(8deg);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+  z-index: 3;
+}
+
+/* Fold crease */
+.fold-crease {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0,0,0,0.03) 20%,
+    rgba(0,0,0,0.04) 50%,
+    rgba(0,0,0,0.03) 80%,
+    transparent 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Instructions box — at top of exam */
+.exam-instructions {
+  background: var(--color-paper-dim);
+  padding: 20px 24px;
+  margin-bottom: 40px;
+  position: relative;
+  border-left: 3px solid rgba(0,0,0,0.1);
+}
+
+.exam-instructions-title {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-pencil-dim);
+  margin-bottom: 10px;
+}
+
+.exam-instructions ol {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  color: var(--color-pencil);
+  line-height: 1.9;
+  padding-left: 18px;
+  margin: 0;
+}
+
+.exam-instructions ol li::marker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-pencil-dim);
+}
+
+.exam-instructions ol li {
+  padding-left: 4px;
+}
+
+/* Page turn divider between sections */
+.page-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 48px 0;
+  color: var(--color-pencil-dim);
+}
+
+.page-divider::before,
+.page-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(0,0,0,0.08);
+}
+
+.page-divider span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Scantron bubble (filled/empty) for scores */
+.bubble {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-pencil-dim);
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.bubble.filled {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+.bubble.filled-red {
+  background: var(--color-red-grade);
+  border-color: var(--color-red-grade);
+}
+
+.bubble.filled-green {
+  background: var(--color-green-grade);
+  border-color: var(--color-green-grade);
+}
+
+/* Red underline — teacher correction */
+.red-underline {
+  text-decoration: underline;
+  text-decoration-color: var(--color-red-grade);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* Strikethrough — teacher crossed it out */
+.red-strike {
+  text-decoration: line-through;
+  text-decoration-color: var(--color-red-grade);
+  text-decoration-thickness: 1.5px;
+  color: var(--color-pencil-dim);
+}
+
+/* Circled grade — teacher's mark */
+.circled-grade {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 2.5px solid var(--color-red-grade);
+  border-radius: 50%;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--color-red-grade);
+  transform: rotate(-5deg);
+}
+
+.circled-grade.pass {
+  border-color: var(--color-green-grade);
+  color: var(--color-green-grade);
+}
+
+/* Rubber stamp effect */
+@keyframes stampIn {
+  0% { transform: scale(3) rotate(-15deg); opacity: 0; }
+  60% { transform: scale(0.9) rotate(-8deg); opacity: 0.9; }
+  100% { transform: scale(1) rotate(-6deg); opacity: 0.7; }
+}
+
+.rubber-stamp {
+  display: inline-block;
+  font-family: var(--font-label);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border: 2.5px solid;
+  border-radius: 2px;
+  transform: rotate(-3deg);
+  opacity: 0.6;
+}
+
+.rubber-stamp.fail {
+  border-color: var(--color-red-grade);
+  color: var(--color-red-grade);
+}
+
+.rubber-stamp.pass {
+  border-color: var(--color-green-grade);
+  color: var(--color-green-grade);
+}
+
+.rubber-stamp.stamp-anim {
+  animation: stampIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Exam header — fill in the blanks */
@@ -436,36 +737,34 @@ input:focus, textarea:focus, select:focus { outline: none; }
 
 /* Final grade */
 .final-grade {
-  text-align: center;
-  padding: 56px 0 48px;
-  border-top: 2px solid var(--color-ink);
-  margin-top: 56px;
+  text-align: left;
+  padding: 36px 0 32px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  margin-top: 48px;
 }
 
 .final-grade-label {
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.35em;
+  font-size: 9px;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--color-pencil-dim);
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .final-grade-mark {
   font-family: var(--font-serif);
-  font-size: 88px;
+  font-size: 48px;
   font-weight: 700;
   line-height: 1;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .final-grade-comment {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--color-pencil);
-  max-width: 420px;
-  margin: 0 auto;
   line-height: 1.7;
 }
 
@@ -904,6 +1203,14 @@ input:focus, textarea:focus, select:focus { outline: none; }
     opacity: 1;
     transform: none;
   }
+}
+
+/* About page feature cell hover */
+.about-feature-cell {
+  transition: background 0.3s;
+}
+.about-feature-cell:hover {
+  background: rgba(0,0,0,0.015);
 }
 
 /* ============================================================

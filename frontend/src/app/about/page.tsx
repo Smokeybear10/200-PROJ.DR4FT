@@ -55,8 +55,15 @@ export default function AboutPage() {
           <div style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontWeight: 600, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-pencil-dim)', marginBottom: 16 }}>Capabilities</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, border: '1px solid rgba(0,0,0,0.08)' }}>
             {FEATURES.map((f, i) => (
-              <div key={f.name} style={{ padding: '20px', borderRight: (i + 1) % 3 !== 0 ? '1px solid rgba(0,0,0,0.06)' : 'none', borderBottom: i < 3 ? '1px solid rgba(0,0,0,0.06)' : 'none', transition: 'background 0.3s' }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(0,0,0,0.015)')} onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}>
+              <div
+                key={f.name}
+                className="about-feature-cell"
+                style={{
+                  padding: '20px',
+                  borderRight: (i + 1) % 3 !== 0 ? '1px solid rgba(0,0,0,0.06)' : 'none',
+                  borderBottom: i < 3 ? '1px solid rgba(0,0,0,0.06)' : 'none',
+                }}
+              >
                 <p style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontWeight: 600, fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--color-pencil-dim)', marginBottom: 6 }}>{f.name}</p>
                 <p style={{ fontSize: 13, color: 'rgba(26,26,24,0.55)', lineHeight: 1.6 }}>{f.desc}</p>
               </div>
