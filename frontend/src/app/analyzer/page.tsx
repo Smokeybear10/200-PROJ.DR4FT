@@ -56,9 +56,16 @@ export default function AnalyzerPage() {
   return (
     <div className="tool-wrapper">
       <div className="tool-paper">
+        <div className="tool-binding" aria-hidden />
+
+        <div className="tool-running-head">
+          <span>DR4FT · Resume Analysis</span>
+          <span>Section A · Submission</span>
+        </div>
+
         <div className="tool-header">
-          <div className="tool-header-kicker">Examination — Resume Analysis</div>
-          <h1 className="tool-header-title">Submit Your Paper</h1>
+          <div className="tool-header-kicker">Examination Booklet</div>
+          <h1 className="tool-header-title">Submit your paper.</h1>
         </div>
 
         <div className="exam-tabs">

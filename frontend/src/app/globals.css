@@ -499,13 +499,11 @@ input:focus, textarea:focus, select:focus { outline: none; }
   opacity: 0;
   background: linear-gradient(
     95deg,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 0.32) 25%,
-    rgba(0, 0, 0, 0.14) 55%,
-    rgba(0, 0, 0, 0.04) 80%,
+    rgba(30, 22, 16, 0.28) 0%,
+    rgba(30, 22, 16, 0.16) 30%,
+    rgba(30, 22, 16, 0.06) 65%,
     transparent 100%
   );
-  mix-blend-mode: multiply;
   will-change: opacity, transform;
 }
 
@@ -545,8 +543,8 @@ input:focus, textarea:focus, select:focus { outline: none; }
   left: 0;
   right: 0;
   padding: clamp(22px, 3%, 34px) clamp(40px, 6%, 64px) clamp(12px, 1.6%, 18px) clamp(92px, 12%, 132px);
-  background: var(--color-paper);
-  border-bottom: 1px solid rgba(30, 22, 16, 0.22);
+  background: transparent;
+  border-bottom: 1px dashed rgba(30, 22, 16, 0.18);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -555,7 +553,7 @@ input:focus, textarea:focus, select:focus { outline: none; }
   font-size: clamp(9px, 0.8vw, 11px);
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(30, 22, 16, 0.6);
+  color: rgba(26, 18, 11, 0.55);
   z-index: 3;
 }
 
@@ -586,13 +584,19 @@ input:focus, textarea:focus, select:focus { outline: none; }
   z-index: 2;
   width: 100%;
   height: 100%;
-  padding: clamp(76px, 9%, 112px) clamp(36px, 6%, 64px) clamp(36px, 4.5%, 56px) clamp(94px, 12%, 128px);
+  padding: clamp(72px, 7.5%, 96px) clamp(32px, 4.5%, 56px) clamp(40px, 4.5%, 60px) clamp(98px, 12%, 132px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 12px;
+  gap: clamp(24px, 3%, 40px);
   overflow: hidden;
   min-height: 0;
+}
+
+.product-group {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.8%, 24px);
 }
 
 /* ─── INLINE SCORE ─── the teacher's grade, written at the bottom-right of
@@ -915,8 +919,8 @@ input:focus, textarea:focus, select:focus { outline: none; }
     repeating-linear-gradient(
       transparent,
       transparent 35px,
-      rgba(82, 120, 170, 0.18) 35px,
-      rgba(82, 120, 170, 0.18) 36px
+      rgba(82, 120, 170, 0.07) 35px,
+      rgba(82, 120, 170, 0.07) 36px
     );
   pointer-events: none;
   z-index: 0;
@@ -986,30 +990,38 @@ input:focus, textarea:focus, select:focus { outline: none; }
   font-size: clamp(10px, 0.82vw, 12px);
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: rgba(30, 22, 16, 0.5);
+  color: rgba(26, 18, 11, 0.58);
   display: inline-block;
   padding-bottom: 4px;
-  border-bottom: 1.5px solid rgba(30, 22, 16, 0.3);
+  border-bottom: 1.5px solid rgba(26, 18, 11, 0.35);
   align-self: flex-start;
-  margin-bottom: clamp(4px, 1%, 12px);
+  margin-bottom: clamp(6px, 1.4%, 14px);
 }
 
 .product-headline {
   font-family: var(--font-serif);
-  font-size: clamp(28px, 3.4vw, 48px);
+  font-size: clamp(30px, 3.2vw, 48px);
   font-weight: 700;
-  line-height: 1.12;
-  color: var(--color-ink);
+  line-height: 1.1;
+  color: #1a120b;
   letter-spacing: -0.015em;
   margin: 0;
+  text-shadow: 0 0 0.35px rgba(26, 18, 11, 0.35);
+}
+
+.product-headline em {
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(26, 18, 11, 0.78);
 }
 
 .product-body {
-  font-family: var(--font-serif);
-  font-size: clamp(15px, 1.15vw, 18px);
-  line-height: 1.65;
-  color: rgba(30, 22, 16, 0.78);
-  max-width: 58ch;
+  font-family: var(--font-typewriter);
+  font-size: clamp(14px, 1.05vw, 17px);
+  line-height: 1.7;
+  color: rgba(26, 18, 11, 0.82);
+  max-width: 64ch;
+  letter-spacing: 0.005em;
 }
 
 .product-note {
@@ -1025,23 +1037,25 @@ input:focus, textarea:focus, select:focus { outline: none; }
 /* Massive statistic — breaks out of the ruled grid for emphasis */
 .product-stat {
   font-family: var(--font-serif);
-  font-size: clamp(84px, 10vw, 148px);
+  font-size: clamp(76px, 8vw, 120px);
   font-weight: 700;
-  line-height: 0.85;
+  line-height: 0.9;
   color: var(--color-ink-red);
   letter-spacing: -0.04em;
   margin: 0;
   display: flex;
   align-items: baseline;
   gap: 2px;
+  text-shadow: 0 0 0.6px rgba(180, 36, 42, 0.3);
 }
 
 .product-stat-sub {
   font-family: var(--font-serif);
-  font-size: clamp(17px, 1.6vw, 24px);
+  font-size: clamp(16px, 1.45vw, 22px);
   font-weight: 700;
-  color: var(--color-ink);
-  line-height: 1.3;
+  font-style: italic;
+  color: #1a120b;
+  line-height: 1.35;
   max-width: 34ch;
   letter-spacing: -0.005em;
 }
@@ -1079,14 +1093,15 @@ input:focus, textarea:focus, select:focus { outline: none; }
   list-style: none;
   margin: 0;
   padding: 0;
-  font-family: var(--font-serif);
-  font-size: clamp(14px, 1.05vw, 16px);
-  line-height: 1.55;
-  color: rgba(30, 22, 16, 0.78);
+  font-family: var(--font-typewriter);
+  font-size: clamp(14px, 1.05vw, 17px);
+  line-height: 1.85;
+  color: rgba(26, 18, 11, 0.82);
+  letter-spacing: 0.005em;
 }
 
 .product-bullets li {
-  padding-left: 22px;
+  padding-left: 28px;
   position: relative;
   margin-bottom: 4px;
 }
@@ -1097,6 +1112,7 @@ input:focus, textarea:focus, select:focus { outline: none; }
   left: 0;
   color: var(--color-ink-red);
   font-weight: 700;
+  font-family: var(--font-serif);
 }
 
 /* Inline "supports" row — clean typewriter line with em-dash separators */
@@ -1127,7 +1143,7 @@ input:focus, textarea:focus, select:focus { outline: none; }
   display: grid;
   grid-template-columns: 1fr auto;
   gap: clamp(14px, 1.8%, 24px);
-  padding: clamp(8px, 1.2%, 14px) clamp(4px, 0.8%, 10px);
+  padding: clamp(22px, 3.4%, 38px) clamp(4px, 0.8%, 10px);
   border-bottom: 1px solid rgba(30, 22, 16, 0.15);
   align-items: baseline;
 }
@@ -1136,19 +1152,20 @@ input:focus, textarea:focus, select:focus { outline: none; }
 
 .product-rubric-row-title {
   font-family: var(--font-serif);
-  font-size: clamp(15px, 1.25vw, 20px);
+  font-size: clamp(15px, 1.2vw, 19px);
   font-weight: 700;
-  color: var(--color-ink);
+  color: #1a120b;
   letter-spacing: -0.005em;
-  margin-bottom: 2px;
-  line-height: 1.2;
+  margin-bottom: 4px;
+  line-height: 1.25;
 }
 
 .product-rubric-row-body {
-  font-family: var(--font-serif);
-  font-size: clamp(12px, 0.92vw, 14px);
-  line-height: 1.45;
-  color: rgba(30, 22, 16, 0.72);
+  font-family: var(--font-typewriter);
+  font-size: clamp(12px, 0.88vw, 14px);
+  line-height: 1.65;
+  color: rgba(26, 18, 11, 0.72);
+  letter-spacing: 0.005em;
 }
 
 .product-rubric-row-weight {
@@ -1260,19 +1277,21 @@ input:focus, textarea:focus, select:focus { outline: none; }
 
 .product-step-title {
   font-family: var(--font-serif);
-  font-size: clamp(19px, 1.6vw, 24px);
+  font-size: clamp(18px, 1.45vw, 22px);
   font-weight: 700;
-  color: var(--color-ink);
-  margin-bottom: 4px;
+  color: #1a120b;
+  margin-bottom: 6px;
   letter-spacing: -0.005em;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .product-step-body {
-  font-family: var(--font-serif);
-  font-size: clamp(14px, 1.05vw, 16px);
-  line-height: 1.55;
-  color: rgba(30, 22, 16, 0.75);
+  font-family: var(--font-typewriter);
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.75;
+  color: rgba(26, 18, 11, 0.78);
+  letter-spacing: 0.005em;
+  max-width: 60ch;
 }
 
 /* 2×2 grading rubric */
@@ -1300,17 +1319,18 @@ input:focus, textarea:focus, select:focus { outline: none; }
 
 .product-rubric-title {
   font-family: var(--font-serif);
-  font-size: clamp(17px, 1.4vw, 22px);
+  font-size: clamp(16px, 1.3vw, 20px);
   font-weight: 700;
-  color: var(--color-ink);
+  color: #1a120b;
   letter-spacing: -0.005em;
 }
 
 .product-rubric-body {
-  font-family: var(--font-serif);
-  font-size: clamp(13px, 1vw, 15px);
-  line-height: 1.5;
-  color: rgba(30, 22, 16, 0.7);
+  font-family: var(--font-typewriter);
+  font-size: clamp(12px, 0.9vw, 14px);
+  line-height: 1.7;
+  color: rgba(26, 18, 11, 0.72);
+  letter-spacing: 0.005em;
 }
 
 /* Product CTA button (page 4) */
@@ -1924,49 +1944,120 @@ input:focus, textarea:focus, select:focus { outline: none; }
 .tool-wrapper {
   background: var(--color-cover-deep);
   min-height: 100vh;
-  padding: calc(var(--nav-height) + 24px) 24px 48px;
+  padding: calc(var(--nav-height) + 40px) 24px 64px;
 }
 
 .tool-paper {
-  background: var(--color-paper);
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 48px 64px 48px 80px;
-  box-shadow: 0 4px 40px rgba(0,0,0,0.2);
   position: relative;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: clamp(56px, 6.5%, 88px) clamp(36px, 5%, 64px) clamp(44px, 5%, 64px) clamp(100px, 11%, 132px);
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(200,175,130,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 90%, rgba(120,95,60,0.05) 0%, transparent 50%),
+    var(--color-paper);
+  box-shadow:
+    0 2px 0 rgba(0,0,0,0.25),
+    0 28px 60px -16px rgba(0,0,0,0.55),
+    0 54px 140px -40px rgba(0,0,0,0.5);
+  overflow: hidden;
 }
 
-/* Binding shadow */
+/* Ruled lines — same blue feint as the booklet pages */
 .tool-paper::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; bottom: 0;
-  width: 48px;
-  background: linear-gradient(to right, var(--color-paper-dim), var(--color-paper));
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 35px,
+    rgba(82, 120, 170, 0.07) 35px,
+    rgba(82, 120, 170, 0.07) 36px
+  );
   pointer-events: none;
+  z-index: 0;
+}
+
+/* Red margin line */
+.tool-paper::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: clamp(76px, 9%, 108px);
+  width: 1px;
+  background: rgba(190, 70, 70, 0.3);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tool-paper > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Dark binding gradient along the spine */
+.tool-binding {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: clamp(32px, 6%, 56px);
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.22) 0%,
+    rgba(0, 0, 0, 0.06) 55%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Running head — the typewriter band at the top, like a book's page header */
+.tool-running-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: clamp(10px, 1.2%, 16px);
+  margin-bottom: clamp(28px, 3.5%, 44px);
+  border-bottom: 1px dashed rgba(26, 18, 11, 0.18);
+  font-family: var(--font-typewriter);
+  font-size: clamp(9px, 0.8vw, 11px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(26, 18, 11, 0.55);
 }
 
 .tool-header {
-  border-bottom: 2px solid var(--color-ink);
-  padding-bottom: 20px;
-  margin-bottom: 40px;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: clamp(32px, 4%, 56px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1%, 14px);
 }
 
 .tool-header-kicker {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.25em;
+  font-family: var(--font-typewriter);
+  font-size: clamp(10px, 0.82vw, 12px);
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-pencil-dim);
-  margin-bottom: 8px;
+  color: rgba(26, 18, 11, 0.58);
+  display: inline-block;
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid rgba(26, 18, 11, 0.35);
+  align-self: flex-start;
 }
 
 .tool-header-title {
   font-family: var(--font-serif);
-  font-size: clamp(28px, 4vw, 40px);
+  font-size: clamp(36px, 4.4vw, 56px);
   font-weight: 700;
-  color: var(--color-ink);
-  line-height: 1.2;
+  color: #1a120b;
+  line-height: 1.08;
+  letter-spacing: -0.018em;
+  text-shadow: 0 0 0.35px rgba(26, 18, 11, 0.35);
+  margin: 0;
 }
 
 /* ============================================================
@@ -1990,6 +2081,132 @@ input:focus, textarea:focus, select:focus { outline: none; }
   margin-bottom: 16px;
   padding-bottom: 10px;
   border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+/* ============================================================
+   MARKET INSIGHTS — booklet-styled panels for the jobs page
+   ============================================================ */
+.market-insights {
+  margin-top: clamp(40px, 5%, 64px);
+  padding-top: clamp(28px, 3%, 40px);
+  border-top: 1px dashed rgba(26, 18, 11, 0.18);
+}
+
+.market-insights-head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: clamp(24px, 3%, 36px);
+}
+
+.market-insights-title {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 3.2vw, 42px);
+  font-weight: 700;
+  line-height: 1.12;
+  color: #1a120b;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-shadow: 0 0 0.35px rgba(26, 18, 11, 0.35);
+}
+
+.market-insights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 3%, 40px) clamp(32px, 4%, 56px);
+}
+
+.insight-block {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.2%, 16px);
+  min-width: 0;
+}
+
+.insight-block-wide {
+  grid-column: 1 / -1;
+}
+
+.insight-block-label {
+  font-family: var(--font-typewriter);
+  font-size: clamp(10px, 0.82vw, 12px);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(26, 18, 11, 0.6);
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid rgba(26, 18, 11, 0.35);
+  align-self: flex-start;
+}
+
+.insight-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.insight-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 16px;
+  padding: clamp(10px, 1.2%, 14px) 0;
+  border-bottom: 1px solid rgba(30, 22, 16, 0.12);
+}
+
+.insight-row:last-child { border-bottom: none; }
+
+.insight-row-name {
+  font-family: var(--font-serif);
+  font-size: clamp(14px, 1.1vw, 17px);
+  font-weight: 700;
+  color: #1a120b;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+  min-width: 0;
+}
+
+.insight-row-meta {
+  font-family: var(--font-typewriter);
+  font-size: clamp(12px, 0.92vw, 14px);
+  color: rgba(26, 18, 11, 0.68);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.insight-growth {
+  color: var(--color-ink-red);
+  font-weight: 600;
+}
+
+.insight-row-salary {
+  grid-template-columns: minmax(0, 1.6fr) auto auto;
+  gap: clamp(16px, 2%, 28px);
+}
+
+.insight-row-range {
+  font-family: var(--font-serif);
+  font-size: clamp(14px, 1.1vw, 17px);
+  font-weight: 700;
+  color: var(--color-ink-red);
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.insight-row-exp {
+  font-family: var(--font-typewriter);
+  font-size: clamp(11px, 0.85vw, 13px);
+  color: rgba(26, 18, 11, 0.55);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .market-insights-grid { grid-template-columns: 1fr; }
+  .insight-row-salary { grid-template-columns: 1fr auto; }
+  .insight-row-salary .insight-row-exp { grid-column: 1 / -1; margin-top: 2px; }
 }
 
 /* Input — fill-in-the-blank style */
@@ -2337,3 +2554,6 @@ input:focus, textarea:focus, select:focus { outline: none; }
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
+
+
+/* cache-bust 1776582326 */

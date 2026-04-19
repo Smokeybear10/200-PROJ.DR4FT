@@ -6,13 +6,22 @@ import ExamButton from '@/components/booklet/ExamButton'
 import ExamInput from '@/components/booklet/ExamInput'
 import { searchJobs, getMarketInsights, type JobResult } from '@/lib/api'
 
+type TrendingSkill = { name: string; growth: string; icon?: string }
+type TopLocation = { name: string; jobs: string; icon?: string }
+type SalaryInsight = { role: string; range: string; experience: string }
+type Insights = {
+  trending_skills?: TrendingSkill[]
+  top_locations?: TopLocation[]
+  salary_insights?: SalaryInsight[]
+}
+
 export default function JobsPage() {
   const [query, setQuery] = useState('')
   const [location, setLocation] = useState('')
   const [detectingLocation, setDetectingLocation] = useState(false)
   const [searching, setSearching] = useState(false)
   const [jobs, setJobs] = useState<JobResult[]>([])
-  const [insights, setInsights] = useState<Record<string, unknown> | null>(null)
+  const [insights, setInsights] = useState<Insights | null>(null)
   const [hasSearched, setHasSearched] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -30,7 +39,7 @@ export default function JobsPage() {
     setSearching(true); setError(null)
     try {
       const [jobResults, insightData] = await Promise.all([searchJobs(query, location), getMarketInsights().catch(() => null)])
-      setJobs(jobResults); setInsights(insightData); setHasSearched(true)
+      setJobs(jobResults); setInsights(insightData as Insights | null); setHasSearched(true)
     } catch (e) { setError(e instanceof Error ? e.message : 'Search failed') }
     finally { setSearching(false) }
   }
@@ -92,14 +101,57 @@ export default function JobsPage() {
               </div>
             ))}
             {insights && (
-              <ExamCard title="Market Insights" className="mt-6">
-                {Object.entries(insights).map(([key, value]) => (
-                  <div key={key} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid rgba(0,0,0,0.04)' }}>
-                    <span style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--color-pencil-dim)' }}>{key.replace(/_/g, ' ')}</span>
-                    <span style={{ fontSize: 13, color: 'var(--color-pencil)' }}>{typeof value === 'object' ? JSON.stringify(value) : String(value)}</span>
-                  </div>
-                ))}
-              </ExamCard>
+              <div className="market-insights">
+                <div className="market-insights-head">
+                  <div className="product-eyebrow">Market Insights</div>
+                  <h2 className="market-insights-title">The state of the market.</h2>
+                </div>
+
+                <div className="market-insights-grid">
+                  {insights.trending_skills && insights.trending_skills.length > 0 && (
+                    <section className="insight-block">
+                      <div className="insight-block-label">Trending Skills</div>
+                      <ul className="insight-list">
+                        {insights.trending_skills.map((s) => (
+                          <li key={s.name} className="insight-row">
+                            <span className="insight-row-name">{s.name}</span>
+                            <span className="insight-row-meta insight-growth">{s.growth}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  )}
+
+                  {insights.top_locations && insights.top_locations.length > 0 && (
+                    <section className="insight-block">
+                      <div className="insight-block-label">Top Locations</div>
+                      <ul className="insight-list">
+                        {insights.top_locations.map((loc) => (
+                          <li key={loc.name} className="insight-row">
+                            <span className="insight-row-name">{loc.name}</span>
+                            <span className="insight-row-meta">{loc.jobs}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  )}
+
+                  {insights.salary_insights && insights.salary_insights.length > 0 && (
+                    <section className="insight-block insight-block-wide">
+                      <div className="insight-block-label">Salary Insights</div>
+                      <ul className="insight-list">
+                        {insights.salary_insights.map((s) => (
+                          <li key={s.role} className="insight-row insight-row-salary">
+                            <span className="insight-row-name">{s.role}</span>
+                            <span className="insight-row-range">{s.range}</span>
+                            <span className="insight-row-exp">{s.experience}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  )}
+                </div>
+              </div>
             )}
           </div>
         )}

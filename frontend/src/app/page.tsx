@@ -88,19 +88,18 @@ export default function Home() {
         // lands so the revealed page is never left dim.
         if (shadowTarget) {
           tl.fromTo(shadowTarget,
-            { opacity: 0, xPercent: -10 },
-            { opacity: 0.5, xPercent: 0, duration: 0.18, ease: 'power2.out' },
+            { opacity: 0, xPercent: -8 },
+            { opacity: 1, xPercent: 0, duration: 0.16, ease: 'power2.out' },
             `${label}+=0.08`,
           )
           tl.to(shadowTarget, {
             opacity: 0,
-            xPercent: 18,
-            duration: 0.22,
-            ease: 'power2.in',
-          }, `${label}+=0.28`)
-          // Hard-reset at the end of the swing so scrub lag can't leave any
-          // residual opacity behind.
-          tl.set(shadowTarget, { opacity: 0, xPercent: 0 }, `${label}+=0.65`)
+            xPercent: 12,
+            duration: 0.18,
+            ease: 'power3.in',
+          }, `${label}+=0.26`)
+          // Hard-reset well before the flip lands so no residue can linger.
+          tl.set(shadowTarget, { opacity: 0, xPercent: 0 }, `${label}+=0.48`)
         }
       }
 
@@ -234,35 +233,39 @@ export default function Home() {
               </div>
 
               <div className="book-page-content">
-                <div className="product-eyebrow">The Problem</div>
+                <div className="product-group">
+                  <div className="product-eyebrow">The Problem</div>
 
-                <div className="product-split">
-                  <div>
-                    <div className="product-stat">76<span>%</span></div>
-                    <div style={{ fontFamily: 'var(--font-typewriter)', fontSize: 'clamp(10px, 0.8vw, 12px)', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(30,22,16,0.55)', marginTop: 10 }}>
-                      Source: Jobscan, 2023
+                  <div className="product-split">
+                    <div>
+                      <div className="product-stat">76<span>%</span></div>
+                      <div style={{ fontFamily: 'var(--font-typewriter)', fontSize: 'clamp(10px, 0.8vw, 12px)', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(30,22,16,0.55)', marginTop: 10 }}>
+                        Source: Jobscan, 2023
+                      </div>
                     </div>
-                  </div>
-                  <div className="product-split-right">
-                    <div className="product-stat-sub">
-                      of resumes are filtered by <em style={{ fontStyle: 'italic' }}>applicant tracking systems</em> before a human reads them.
-                    </div>
-                    <div className="product-body">
-                      Every Fortune 500 company runs your file through a keyword-matching,
-                      format-checking algorithm first. If it fails the machine, it never
-                      reaches a recruiter.
+                    <div className="product-split-right">
+                      <div className="product-stat-sub">
+                        of resumes are filtered by <em style={{ fontStyle: 'italic' }}>applicant tracking systems</em> before a human reads them.
+                      </div>
+                      <div className="product-body">
+                        Every Fortune 500 company runs your file through a keyword-matching,
+                        format-checking algorithm first. If it fails the machine, it never
+                        reaches a recruiter.
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="product-sub-label">Why resumes get rejected</div>
-                <ul className="product-bullets">
-                  <li>Keywords don&apos;t match the job posting verbatim</li>
-                  <li>Non-standard or stylized section headings</li>
-                  <li>Tables, columns, and images the parser can&apos;t read</li>
-                  <li>PDFs that are actually scanned images</li>
-                  <li>Vague bullets with no measurable impact</li>
-                </ul>
+                <div className="product-group">
+                  <div className="product-sub-label">Why resumes get rejected</div>
+                  <ul className="product-bullets">
+                    <li>Keywords don&apos;t match the job posting verbatim</li>
+                    <li>Non-standard or stylized section headings</li>
+                    <li>Tables, columns, and images the parser can&apos;t read</li>
+                    <li>PDFs that are actually scanned images</li>
+                    <li>Vague bullets with no measurable impact</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -279,11 +282,13 @@ export default function Home() {
               </div>
 
               <div className="book-page-content">
-                <div className="product-eyebrow">How It Works</div>
+                <div className="product-group">
+                  <div className="product-eyebrow">How It Works</div>
 
-                <h2 className="product-headline">
-                  Your resume,<br />graded in 30 seconds.
-                </h2>
+                  <h2 className="product-headline">
+                    Your resume,<br />graded in 30 seconds.
+                  </h2>
+                </div>
 
                 <ol className="product-steps">
                   <li>
@@ -309,9 +314,11 @@ export default function Home() {
                   </li>
                 </ol>
 
-                <div className="product-sub-label">Supports</div>
-                <div className="product-supports">
-                  <strong>PDF</strong> · <strong>DOCX</strong> · <strong>Google Docs</strong> · <strong>LinkedIn URL</strong> · <strong>Paste text</strong>
+                <div className="product-group">
+                  <div className="product-sub-label">Supports</div>
+                  <div className="product-supports">
+                    <strong>PDF</strong> · <strong>DOCX</strong> · <strong>Google Docs</strong> · <strong>LinkedIn URL</strong> · <strong>Paste text</strong>
+                  </div>
                 </div>
               </div>
             </div>
@@ -329,11 +336,13 @@ export default function Home() {
               </div>
 
               <div className="book-page-content">
-                <div className="product-eyebrow">The Rubric</div>
+                <div className="product-group">
+                  <div className="product-eyebrow">The Rubric</div>
 
-                <h2 className="product-headline">
-                  Graded on four criteria.
-                </h2>
+                  <h2 className="product-headline">
+                    Graded on four criteria.
+                  </h2>
+                </div>
 
                 <div className="product-rubric-table">
                   <div className="product-rubric-row">
